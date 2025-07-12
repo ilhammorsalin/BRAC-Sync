@@ -8,12 +8,10 @@ public class E {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         String[] line = br.readLine().split(" ");
-
         int n = Integer.parseInt(line[0]);
         int k = Integer.parseInt(line[1]);
 
         String[] arrStr = br.readLine().split(" ");
-
         int[] arr = new int[n];
 
         for (int i = 0; i < n; i++) {
@@ -21,18 +19,15 @@ public class E {
         }
 
         int left = 0, sum = 0, maxLen = 0;
-
-        for (int i = 0; i < n; i++) {
-            sum += arr[i];
-            while (sum > k && left <= i) {
+        for (int right = 0; right < n; right++) {
+            sum += arr[right];
+            while (sum > k && left <= right) {
                 sum -= arr[left];
                 left++;
             }
-            maxLen = Math.max(maxLen, i - left + 1);
+            maxLen = Math.max(maxLen, right - left + 1);
         }
 
-        StringBuilder sb = new StringBuilder();
-        sb.append(maxLen);
-        System.out.println(sb);
+        System.out.println(maxLen);
     }
 }
