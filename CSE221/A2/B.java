@@ -1,33 +1,67 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
 public class B {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        // Read first line: N M K
         String[] firstLine = br.readLine().split(" ");
-        
+
         int N = Integer.parseInt(firstLine[0]);
         int M = Integer.parseInt(firstLine[1]);
         int K = Integer.parseInt(firstLine[2]);
 
         String[] secondLine = br.readLine().split(" ");
         String[] thirdLine = br.readLine().split(" ");
-        int[] bigArray = new int[N+M];
+        int[] arr1 = new int[N];
+        int[] arr2 = new int[M];
 
-        for (int i = 0; i < N+M; i++) {
-            bigArray[i] = Integer.parseInt(secondLine[i]);
-            bigArray[i+N] = Integer.parseInt(thirdLine[i]);
+        for (int i = 0; i < N; i++) {
+            arr1[i] = Integer.parseInt(secondLine[i]);
+        }
+        for (int i = 0; i < M; i++) {
+            arr2[i] = Integer.parseInt(thirdLine[i]);
         }
 
-        Arrays.sort(bigArray);
+        boolean found = false;
+        int left = 0;
+        int right = M - 1;
+        int max = Integer.MAX_VALUE;
+        int idxL = 0;
+        int idxR = 0;
 
-        System.out.println(Arrays.toString(bigArray));
-        
+        while (left < N && right >= 0) {
+            int sum = arr1[left] + arr2[right];
 
+            if (Math.abs(K - sum) < max) {
+                max = Math.abs(K - sum);
+                idxL = left;
+                idxR = right;
+            }
 
+            if (sum == K) {
+                found = true;
+                break;
+            }
+
+            else if (sum < K) {
+                left++;
+
+            }
+
+            else if (sum > K) {
+                right--;
+            }
+
+        }
+
+        if (found) {
+            System.out.println(++left + " " + ++right);
+
+        } else {
+            System.out.println(++idxL + " " + ++idxR);
+
+        }
     }
 }
