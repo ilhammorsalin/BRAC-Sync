@@ -9,25 +9,23 @@ public class B {
 
         // Read first line: N M K
         String[] firstLine = br.readLine().split(" ");
-        
+
         int N = Integer.parseInt(firstLine[0]);
         int M = Integer.parseInt(firstLine[1]);
         int K = Integer.parseInt(firstLine[2]);
 
         String[] secondLine = br.readLine().split(" ");
         String[] thirdLine = br.readLine().split(" ");
-        int[] bigArray = new int[N+M];
+        int[] bigArray = new int[N + M];
 
-        for (int i = 0; i < N+M; i++) {
+        for (int i = 0; i < N + M; i++) {
             bigArray[i] = Integer.parseInt(secondLine[i]);
-            bigArray[i+N] = Integer.parseInt(thirdLine[i]);
+            bigArray[i + N] = Integer.parseInt(thirdLine[i]);
         }
 
         Arrays.sort(bigArray);
 
         System.out.println(Arrays.toString(bigArray));
-        
-
 
     }
 }
