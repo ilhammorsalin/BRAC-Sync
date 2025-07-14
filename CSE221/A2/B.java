@@ -14,54 +14,18 @@ public class B {
 
         String[] secondLine = br.readLine().split(" ");
         String[] thirdLine = br.readLine().split(" ");
-        int[] arr1 = new int[N];
-        int[] arr2 = new int[M];
+        int[] bigArray = new int[N+M];
 
-        for (int i = 0; i < N; i++) {
-            arr1[i] = Integer.parseInt(secondLine[i]);
-        }
-        for (int i = 0; i < M; i++) {
-            arr2[i] = Integer.parseInt(thirdLine[i]);
+        for (int i = 0; i < N+M; i++) {
+            bigArray[i] = Integer.parseInt(secondLine[i]);
+            bigArray[i+N] = Integer.parseInt(thirdLine[i]);
         }
 
-        boolean found = false;
-        int left = 0;
-        int right = M - 1;
-        int max = Integer.MAX_VALUE;
-        int idxL = 0;
-        int idxR = 0;
+        Arrays.sort(bigArray);
 
-        while (left < N && right >= 0) {
-            int sum = arr1[left] + arr2[right];
+        System.out.println(Arrays.toString(bigArray));
+        
 
-            if (Math.abs(K - sum) < max) {
-                max = Math.abs(K - sum);
-                idxL = left;
-                idxR = right;
-            }
 
-            if (sum == K) {
-                found = true;
-                break;
-            }
-
-            else if (sum < K) {
-                left++;
-
-            }
-
-            else if (sum > K) {
-                right--;
-            }
-
-        }
-
-        if (found) {
-            System.out.println(++left + " " + ++right);
-
-        } else {
-            System.out.println(++idxL + " " + ++idxR);
-
-        }
     }
 }
