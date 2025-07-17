@@ -10,17 +10,17 @@ public class C {
 
         long a = Long.parseLong(str[0]);
         long b = Long.parseLong(str[1]);
+        long mod = 107;
 
-        double a_power_b = (double) Math.pow(a, b);
+        String bin = Long.toBinaryString(b);
+        long result = 1;
 
-        double div = (double) (a_power_b / 107l);
-
-        div = div - (long) div;
-
-        div = div * 107;
-
-        System.out.println((long) div);
-
+        for (int i = 0; i < bin.length(); i++) {
+            result = (result * result) % mod;
+            if (bin.charAt(i) == '1') {
+                result = (result * a) % mod;
+            }
+        }
+        System.out.println(result);
     }
-
 }
