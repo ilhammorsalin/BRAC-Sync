@@ -7,6 +7,7 @@ public class D {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
         long MOD = 1000000007L;
+        StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < n; i++) {
             String str[] = br.readLine().split(" ");
@@ -18,18 +19,14 @@ public class D {
 
             long[] result = matPow(arr, power, MOD);
 
-            for (int j = 0; j < result.length; j++) {
-                System.out.print(result[j] % MOD + " ");
-                if (j == 1) {
-                    System.out.println();
-                }
-            }
-            System.out.println();
+            sb.append(result[0] % MOD).append(" ").append(result[1] % MOD).append("\n");
+            sb.append(result[2] % MOD).append(" ").append(result[3] % MOD).append("\n");
         }
+        System.out.print(sb);
     }
 
     public static long[] matPow(long[] arr, int a, long MOD) {
-        long[] res = {1, 0, 0, 1};
+        long[] res = { 1, 0, 0, 1 };
         long[] b = arr.clone();
         while (a > 0) {
             if (a % 2 == 1) {
