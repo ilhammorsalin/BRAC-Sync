@@ -20,7 +20,7 @@ public class quickSort {
             System.out.print(arr[i] + " ");
         }
         System.out.println();
-        HashMap hash = new HashMap<Integer, Integer>();
+        
         
     }
 
