@@ -1,5 +1,3 @@
-package CSE221.A5;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
