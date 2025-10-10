@@ -37,6 +37,7 @@ public class H {
                 System.out.println(-1);
             } else {
                 System.out.println(neighbors.get(k - 1));
+                
             }
         }
     }
