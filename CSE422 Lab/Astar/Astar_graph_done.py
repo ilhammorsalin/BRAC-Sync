@@ -11,15 +11,16 @@ import heapq
 # Done
 
 def Astar(start, goal, graph, h):
-    pq = [(start, h[start])]
+    pq = [(h[start],start)]
     in_pq = {start}
     gScore = {start:0}
-    cameFrom = {start:None}
+    cameFrom = {}
 
-    while pq is not None:
-        cur, _ = heapq.heappop(pq)
+    while pq :
+        _, cur = heapq.heappop(pq)
         in_pq.discard(cur)
-        if cur is goal:
+
+        if cur in goal:
             g = cur
             path = []
             while cur in cameFrom:
@@ -27,14 +28,15 @@ def Astar(start, goal, graph, h):
                 cur = cameFrom[cur]
             path.append(start)
             path.reverse()
-            return path, gScore[goal], g
-        for n, cost in graph.get(cur, []):
+            return path, gScore[g], g
+        
+        for n, cost in graph[cur]:
             tScore = gScore[cur] + cost
-            if tScore <= gScore[n]:
+            if n not in gScore or tScore <= gScore.get(n):
                 cameFrom[n] = cur
                 gScore[n] = tScore
-                if n not in pq:
-                    heapq.heappush(pq, (n, tScore+h[n]))
+                heapq.heappush(pq, (tScore+h[n], n))
+
     return None, 0, None
 
 
@@ -45,8 +47,6 @@ while True:
     line = input().strip()
     if line == "Done":
         break
-    if not line:
-        continue
     
     parts = line.split()
     u, v, cost = parts[0], parts[1], int(parts[2])
