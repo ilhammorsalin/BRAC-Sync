@@ -1,0 +1,9 @@
+S A 5
+S B 2
+A C 4
+A D 9
+B D 6
+C G1 7
+D E 1
+E G2 2
+Done
